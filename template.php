@@ -63,7 +63,7 @@
           <a href="<?=$root?>">
           <?php endif; ?>
             <div class="folder">
-              ^ [Up one level]
+              <span>^ [Up one level]</span>
             </div>
           </a>
         </div>
