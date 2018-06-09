@@ -1,16 +1,18 @@
 <?php
 
 // User-defined constants
+define("GALLERY_ROOT",      '/');
+define("GALLERY_TITLE",     'Gallery');
 define("THUMBNAIL_WIDTH",   200);
 define("THUMBNAIL_HEIGHT",  200);
 define("THUMBNAIL_QUALITY", 100);
 define("THUMBNAIL_CROP",    true);
-define("TEMPLATE_FILE",     'template.php');
-define("GALLERY_ROOT",      '/');
-define("GALLERY_TITLE",     'Gallery');
 
 // System-defined constants
-define("REAL_BASE", realpath('./fulls/'));
+define("TEMPLATE_FILE",     'template.php');
+define("FULLS_PATH",        'fulls/');
+define("THUMBS_PATH",       'thumbs/');
+define("REAL_BASE",         realpath(FULLS_PATH));
 
 spl_autoload_register(function ($class_name) {
     include './models/' . $class_name . '.php';
@@ -40,14 +42,14 @@ if (isset($_GET['t'])) {
 
 /******************************** SERVE INDEX ********************************/
 // Generate file list
-$path = './fulls';
+$path = FULLS_PATH;
 $subpath = '';
 $parent = '';
 if (isset($_GET['p'])) {
   $subpath = trim($_GET['p']);
   $realpath = new Path($subpath);
   $parent = $realpath->getParent();
-  $path = './fulls/' . $subpath;
+  $path = FULLS_PATH . $subpath;
   $subpath .= '/';
 } else {
   $realpath = new Path($subpath);
@@ -62,6 +64,7 @@ $files = $gallery->getFiles();
 // Render template
 $title = GALLERY_TITLE;
 $root = GALLERY_ROOT;
+$fulls = FULLS_PATH;
 $size = max(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT);
 header('Expires: Mon, 01 Jan 2018 00:00:00 GMT');
 header('Cache-Control: no-store, no-cache, must-revalidate');

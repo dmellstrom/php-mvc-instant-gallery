@@ -8,8 +8,8 @@ class Thumbnail
   {
     new Path($requested); // Prevent directory traversal
 
-    $file = './fulls/' . $requested;
-    $thumbfile = './thumbs/' . $requested . '.jpg';
+    $file = FULLS_PATH . $requested;
+    $thumbfile = THUMBS_PATH . $requested . '.jpg';
 
     if (is_file($file) && is_readable($file)) {
 

@@ -84,7 +84,7 @@
       <?php if(count($files)): ?>
         <?php foreach($files as $file): ?>
           <div class="item">
-            <a href="<?=$root?>fulls/<?=htmlspecialchars($subpath)?><?=htmlspecialchars($file)?>">
+            <a href="<?=$root?><?=$fulls?><?=htmlspecialchars($subpath)?><?=htmlspecialchars($file)?>">
               <img src="<?=$root?>index.php?t=<?=htmlspecialchars($subpath)?><?=htmlspecialchars($file)?>"
                    alt="<?=$file?>"
                    border="0" />

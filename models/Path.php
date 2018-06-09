@@ -7,7 +7,7 @@ class Path
   public function __construct($path)
   {
     // Protect against directory traversal attacks
-    $realpath = realpath('./fulls/' . $path);
+    $realpath = realpath(FULLS_PATH . $path);
     if (strpos($path, '..') !== false
         || $realpath == false
         || strpos($realpath, REAL_BASE) !== 0) {
