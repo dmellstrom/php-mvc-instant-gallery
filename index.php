@@ -7,6 +7,7 @@ define("THUMBNAIL_WIDTH",   200);
 define("THUMBNAIL_HEIGHT",  200);
 define("THUMBNAIL_QUALITY", 100);
 define("THUMBNAIL_CROP",    true);
+define("LIGHTBOX_SHOW",     true);
 
 // System-defined constants
 define("TEMPLATE_FILE",     'template.php');
@@ -66,6 +67,7 @@ $title = GALLERY_TITLE;
 $root = GALLERY_ROOT;
 $fulls = FULLS_PATH;
 $size = max(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT);
+$lightbox = LIGHTBOX_SHOW;
 header('Expires: Mon, 01 Jan 2018 00:00:00 GMT');
 header('Cache-Control: no-store, no-cache, must-revalidate');
 header('Cache-Control: post-check=0, pre-check=0', FALSE);

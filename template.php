@@ -82,9 +82,13 @@
       <?php endif; ?>
 
       <?php if(count($files)): ?>
-        <?php foreach($files as $file): ?>
+        <?php foreach($files as $i => $file): ?>
           <div class="item">
+            <?php if($lightbox): ?>
+            <a href="#<?=($i + 1)?>">
+            <?php else: ?>
             <a href="<?=$root?><?=$fulls?><?=htmlspecialchars($subpath)?><?=htmlspecialchars($file)?>">
+            <?php endif; ?>
               <img src="<?=$root?>index.php?t=<?=htmlspecialchars($subpath)?><?=htmlspecialchars($file)?>"
                    alt="<?=$file?>"
                    border="0" />
@@ -94,5 +98,40 @@
       <?php endif; ?>
     </div>
   </div>
+  <?php if($lightbox && count($files)): ?>
+    <!-- Prevent FOUC -->
+    <style type="text/css"><!--
+      .lightbox {
+        visibility: hidden;
+      }
+      .lightbox .lightbox-image-container {
+        display: none;
+      }
+    //--></style>
+    <link rel="stylesheet" type="text/css" href="lightbox.css">
+    <?php foreach($files as $i => $file): ?>
+      <div class="lightbox" id="<?=($i+1)?>">
+        <h1><?=($i + 1)?>/<?=count($files)?></h1>
+        <div class="lightbox-close">
+          <a href="#_"></a>
+        </div>
+        <?php if($i > 0): ?>
+        <div class="lightbox-prev">
+          <a href="#<?=($i)?>"><div>&lsaquo;</div></a>
+        </div>
+        <?php endif; ?>
+        <?php if($i < count($files) - 1): ?>
+        <div class="lightbox-next">
+          <a href="#<?=($i + 2)?>"><div>&rsaquo;</div></a>
+        </div>
+        <?php endif; ?>
+        <div class="lightbox-wrapper">
+          <div class="lightbox-image-container">
+            <div class="lightbox-image" style="background-image:url(<?=$root?><?=$fulls?><?=htmlspecialchars($subpath)?><?=htmlspecialchars($file)?>)"></div>
+            </div>
+        </div>
+      </div>
+    <?php endforeach; ?>
+  <?php endif; ?>
 </body>
 </html>
