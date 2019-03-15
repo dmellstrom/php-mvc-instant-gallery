@@ -11,8 +11,8 @@ define("LIGHTBOX_SHOW",     true);
 
 // System-defined constants
 define("TEMPLATE_FILE",     'template.php');
-define("FULLS_PATH",        'fulls/');
-define("THUMBS_PATH",       'thumbs/');
+define("FULLS_PATH",        'images/fulls/');
+define("THUMBS_PATH",       'images/thumbs/');
 define("REAL_BASE",         realpath(FULLS_PATH));
 
 spl_autoload_register(function ($class_name) {
