@@ -87,7 +87,7 @@
             <?php if($lightbox): ?>
             <a href="#<?=($i + 1)?>">
             <?php else: ?>
-            <a href="<?=$root?><?=$fulls?><?=htmlspecialchars($subpath)?><?=htmlspecialchars($file)?>">
+            <a href="<?=$root?><?=$fulls?><?=htmlspecialchars($subpath)?><?=htmlspecialchars($file)?>" target="<?=$target?>">
             <?php endif; ?>
               <img src="<?=$root?>index.php?t=<?=htmlspecialchars($subpath)?><?=htmlspecialchars($file)?>"
                    alt="<?=$file?>"
