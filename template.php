@@ -55,7 +55,7 @@
   <div class="container">
     <div class="gallery">
       <?php if($subpath): ?>
-        <h2>Contents of <?=htmlspecialchars($subpath)?></h2>
+        <h2>Contents of <?=$root?><?=htmlspecialchars($subpath)?></h2>
         <div class="item">
           <?php if($parent): ?>
           <a href="<?=$root?>index.php?p=<?=$parent?>">
@@ -68,7 +68,7 @@
           </a>
         </div>
       <?php else: ?>
-        <h2>Gallery root</h2>
+        <h2>Contents of <?=$root?></h2>
       <?php endif; ?>
 
       <?php if(count($subdirs)): ?>
