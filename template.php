@@ -115,14 +115,18 @@
         <div class="lightbox-close">
           <a href="#_"></a>
         </div>
-        <?php if($i > 0): ?>
+        <?php if($i > 0 || $loop == 2): ?>
         <div class="lightbox-prev">
-          <a href="#<?=($i)?>"><div>&lsaquo;</div></a>
+          <a href="#<?=((($i - 1) + count($files)) % count($files) + 1)?>">
+            <div>&lsaquo;</div>
+          </a>
         </div>
         <?php endif; ?>
-        <?php if($i < count($files) - 1): ?>
+        <?php if($i < count($files) - 1 || $loop == 1 || $loop == 2): ?>
         <div class="lightbox-next">
-          <a href="#<?=($i + 2)?>"><div>&rsaquo;</div></a>
+          <a href="#<?=((($i + 1) % count($files)) + 1)?>">
+            <div>&rsaquo;</div>
+          </a>
         </div>
         <?php endif; ?>
         <div class="lightbox-wrapper">

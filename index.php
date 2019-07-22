@@ -8,6 +8,7 @@ define("THUMBNAIL_HEIGHT",  200);
 define("THUMBNAIL_QUALITY", 100);
 define("THUMBNAIL_CROP",    true);
 define("LIGHTBOX_SHOW",     true);
+define("LIGHTBOX_LOOP",     0);
 define("ANCHOR_TARGET",     '_blank');
 
 // System-defined constants
@@ -69,6 +70,7 @@ $root       = GALLERY_ROOT;
 $fulls      = FULLS_PATH;
 $size       = max(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT);
 $lightbox   = LIGHTBOX_SHOW;
+$loop       = LIGHTBOX_LOOP;
 $target     = ANCHOR_TARGET;
 header('Expires: Mon, 01 Jan 2018 00:00:00 GMT');
 header('Cache-Control: no-store, no-cache, must-revalidate');
