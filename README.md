@@ -1,6 +1,6 @@
 # PHP MVC Instant Gallery
 
-Generates a gallery index with thumbnails from a directory of images. Supports JPG, PNG, GIF, and subdirectories. Demonstrates OOP, MVC architecture, and autoloading.
+Generates a gallery index with thumbnails from a directory of images. Supports JPEG, PNG, GIF, WEBP, and subdirectories. Demonstrates OOP, MVC architecture, and autoloading.
 
 ## Requirements
 

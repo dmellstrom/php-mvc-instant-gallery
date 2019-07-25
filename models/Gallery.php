@@ -13,7 +13,7 @@ class Gallery
       if ($file[0] == '.') {
         continue;
       }
-      if (preg_match('#\.(jpe?g|png|gif)$#i', $file)) {
+      if (preg_match('#\.(jpe?g|png|gif|webp)$#i', $file)) {
         if (is_file($path . '/' . $file) && is_readable($path . '/' . $file)) {
           $files[] = $file;
         }

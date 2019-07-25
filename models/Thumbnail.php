@@ -57,6 +57,7 @@ class Thumbnail
       case 1: $original = imagecreatefromgif($file); break;
       case 2: $original = imagecreatefromjpeg($file); break;
       case 3: $original = imagecreatefrompng($file); break;
+      case 18: $original = imagecreatefromwebp($file); break;
       default: die("Unrecognized file format for $file");
     }
     $thumbnail = imagecreatetruecolor($thumbwidth, $thumbheight);
