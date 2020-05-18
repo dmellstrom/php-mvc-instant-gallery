@@ -58,7 +58,7 @@
         <h2>Contents of <?=$root?><?=htmlspecialchars($subpath)?></h2>
         <div class="item">
           <?php if($parent): ?>
-          <a href="<?=$root?>index.php?p=<?=urlencode($parent)?>">
+          <a href="<?=$root?>index.php?p=<?=rawurlencode($parent)?>">
           <?php else: ?>
           <a href="<?=$root?>">
           <?php endif; ?>
@@ -74,7 +74,7 @@
       <?php if(count($subdirs)): ?>
         <?php foreach($subdirs as $subdir): ?>
           <div class="item">
-            <a href="<?=$root?>index.php?p=<?=urlencode($subpath)?><?=urlencode($subdir)?>">
+            <a href="<?=$root?>index.php?p=<?=rawurlencode($subpath)?><?=rawurlencode($subdir)?>">
               <div class="folder"><span><?=htmlspecialchars($subdir)?><span></div>
             </a>
           </div>
@@ -87,9 +87,9 @@
             <?php if($lightbox): ?>
             <a href="#<?=($i + 1)?>">
             <?php else: ?>
-            <a href="<?=$root?><?=$fulls?><?=urlencode($subpath)?><?=urlencode($file)?>" target="<?=$target?>">
+            <a href="<?=$root?><?=$fulls?><?=rawurlencode($subpath)?><?=rawurlencode($file)?>" target="<?=$target?>">
             <?php endif; ?>
-              <img src="<?=$root?>index.php?t=<?=urlencode($subpath)?><?=urlencode($file)?>"
+              <img src="<?=$root?>index.php?t=<?=rawurlencode($subpath)?><?=rawurlencode($file)?>"
                    alt="<?=$file?>"
                    border="0" />
             </a>
@@ -131,7 +131,7 @@
         <?php endif; ?>
         <div class="lightbox-wrapper">
           <div class="lightbox-image-container">
-            <div class="lightbox-image" style="background-image:url(<?=$root?><?=$fulls?><?=urlencode($subpath)?><?=urlencode($file)?>)"></div>
+            <div class="lightbox-image" style="background-image:url(<?=$root?><?=$fulls?><?=rawurlencode($subpath)?><?=rawurlencode($file)?>)"></div>
             </div>
         </div>
       </div>
