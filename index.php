@@ -8,7 +8,7 @@ define("THUMBNAIL_HEIGHT",  200);
 define("THUMBNAIL_QUALITY", 100);
 define("THUMBNAIL_CROP",    true);
 define("LIGHTBOX_SHOW",     true);
-define("LIGHTBOX_LOOP",     0);
+define("LIGHTBOX_LOOP",     false);
 define("ANCHOR_TARGET",     '_blank');
 
 // System-defined constants

@@ -107,22 +107,29 @@
       .lightbox .lightbox-image-container {
         display: none;
       }
+      .lightbox .lightbox-progress a {
+        padding:<?=min((1.0 / count($files)) * 40.0, 1.0)?>%;
+      }
+      <?php foreach($files as $i => $file): ?>
+      div[id='<?=($i+1)?>'] .lightbox-image {
+        background-image: url(<?=$root?><?=$fulls?><?=rawurlencode($subpath)?><?=rawurlencode($file)?>);
+      }
+      <?php endforeach; ?>
     //--></style>
     <link rel="stylesheet" type="text/css" href="lightbox.css">
     <?php foreach($files as $i => $file): ?>
       <div class="lightbox" id="<?=($i+1)?>">
-        <h1><?=($i + 1)?>/<?=count($files)?></h1>
         <div class="lightbox-close">
-          <a href="#_"></a>
+          <a href="#"></a>
         </div>
-        <?php if($i > 0 || $loop == 2): ?>
+        <?php if($i > 0 || $loop): ?>
         <div class="lightbox-prev">
           <a href="#<?=((($i - 1) + count($files)) % count($files) + 1)?>">
             <div>&lsaquo;</div>
           </a>
         </div>
         <?php endif; ?>
-        <?php if($i < count($files) - 1 || $loop == 1 || $loop == 2): ?>
+        <?php if($i < count($files) - 1 || $loop): ?>
         <div class="lightbox-next">
           <a href="#<?=((($i + 1) % count($files)) + 1)?>">
             <div>&rsaquo;</div>
@@ -131,8 +138,14 @@
         <?php endif; ?>
         <div class="lightbox-wrapper">
           <div class="lightbox-image-container">
-            <div class="lightbox-image" style="background-image:url(<?=$root?><?=$fulls?><?=rawurlencode($subpath)?><?=rawurlencode($file)?>)"></div>
+            <div class="lightbox-image"></div>
             </div>
+        </div>
+        <
+        <div class="lightbox-progress">
+          <?php for($j = 0; $j < count($files); $j++): ?>
+          <a href="#<?=($j + 1)?>" <?=($i == $j ? 'class="current"' : '')?>></a>
+          <?php endfor; ?>
         </div>
       </div>
     <?php endforeach; ?>

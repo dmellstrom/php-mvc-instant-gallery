@@ -20,5 +20,5 @@ Several constants can be edited at the top of `index.php` to customize the opera
 * `THUMBNAIL_QUALITY`: JPEG output quality of generated thumbnails.
 * `THUMBNAIL_CROP`: If set to `false`, generated thumbnails will have the same aspect ratio as the original images. Otherwise, the image will be center-cropped to fill the thumbnail.
 * `LIGHTBOX_SHOW`: If set to `false`, thumbnails will link to the original images instead of launching a slideshow.
-* `LIGHTBOX_LOOP`: Set this value to 1 to enable looping from the last image to the first in the slideshow, or 2 to enable bidirectional looping.
+* `LIGHTBOX_LOOP`: Set this value to `true` to enable looping from the last image to the first in the slideshow, and vice versa.
 * `ANCHOR_TARGET`: Determines the behavior of thumbnail links in the absence of the lightbox. Set this to `_self` to open full images in the same tab (default is `_blank` for a new tab).
