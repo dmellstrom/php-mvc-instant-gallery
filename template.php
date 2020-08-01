@@ -54,101 +54,101 @@
 <body>
   <div class="container">
     <div class="gallery">
-      <?php if($subpath): ?>
-        <h2>Contents of <?=$root?><?=htmlspecialchars($subpath)?></h2>
-        <div class="item">
-          <?php if($parent): ?>
-          <a href="<?=$root?>index.php?p=<?=rawurlencode($parent)?>">
-          <?php else: ?>
-          <a href="<?=$root?>">
-          <?php endif; ?>
-            <div class="folder">
-              <span>^ [Up one level]</span>
-            </div>
-          </a>
-        </div>
-      <?php else: ?>
-        <h2>Contents of <?=$root?></h2>
-      <?php endif; ?>
-
-      <?php if(count($subdirs)): ?>
-        <?php foreach($subdirs as $subdir): ?>
-          <div class="item">
-            <a href="<?=$root?>index.php?p=<?=rawurlencode($subpath)?><?=rawurlencode($subdir)?>">
-              <div class="folder"><span><?=htmlspecialchars($subdir)?><span></div>
-            </a>
+<?php if($subpath): ?>
+      <h2>Contents of <?=$root?><?=htmlspecialchars($subpath)?></h2>
+      <div class="item">
+<?php   if($parent): ?>
+        <a href="<?=$root?>index.php?p=<?=rawurlencode($parent)?>">
+<?php   else: ?>
+        <a href="<?=$root?>">
+<?php   endif; ?>
+          <div class="folder">
+            <span>^ [Up one level]</span>
           </div>
-        <?php endforeach; ?>
-      <?php endif; ?>
+        </a>
+      </div>
+<?php else: ?>
+      <h2>Contents of <?=$root?></h2>
+<?php endif; ?>
 
-      <?php if(count($files)): ?>
-        <?php foreach($files as $i => $file): ?>
-          <div class="item">
-            <?php if($lightbox): ?>
-            <a href="#<?=($i + 1)?>">
-            <?php else: ?>
-            <a href="<?=$root?><?=$fulls?><?=rawurlencode($subpath)?><?=rawurlencode($file)?>" target="<?=$target?>">
-            <?php endif; ?>
-              <img src="<?=$root?>index.php?t=<?=rawurlencode($subpath)?><?=rawurlencode($file)?>"
-                   alt="<?=$file?>"
-                   border="0" />
-            </a>
-          </div>
-        <?php endforeach; ?>
-      <?php endif; ?>
+<?php if(count($subdirs)): ?>
+<?php   foreach($subdirs as $subdir): ?>
+      <div class="item">
+        <a href="<?=$root?>index.php?p=<?=rawurlencode($subpath)?><?=rawurlencode($subdir)?>">
+          <div class="folder"><span><?=htmlspecialchars($subdir)?><span></div>
+        </a>
+      </div>
+<?php   endforeach; ?>
+<?php endif; ?>
+
+<?php if(count($files)): ?>
+<?php   foreach($files as $i => $file): ?>
+      <div class="item">
+<?php     if($lightbox): ?>
+        <a href="#<?=($i + 1)?>">
+<?php     else: ?>
+        <a href="<?=$root?><?=$fulls?><?=rawurlencode($subpath)?><?=rawurlencode($file)?>" target="<?=$target?>">
+<?php     endif; ?>
+          <img src="<?=$root?>index.php?t=<?=rawurlencode($subpath)?><?=rawurlencode($file)?>"
+               alt="<?=$file?>"
+               border="0" />
+        </a>
+      </div>
+<?php   endforeach; ?>
+<?php endif; ?>
     </div>
   </div>
-  <?php if($lightbox && count($files)): ?>
-    <!-- Prevent FOUC -->
-    <style type="text/css"><!--
-      .lightbox {
-        visibility: hidden;
-      }
-      .lightbox .lightbox-image-container {
-        display: none;
-      }
-      .lightbox .lightbox-progress a {
-        padding:<?=min((1.0 / count($files)) * 40.0, 1.0)?>%;
-      }
-      <?php foreach($files as $i => $file): ?>
-      div[id='<?=($i+1)?>'] .lightbox-image {
-        background-image: url(<?=$root?><?=$fulls?><?=rawurlencode($subpath)?><?=rawurlencode($file)?>);
-      }
-      <?php endforeach; ?>
-    //--></style>
-    <link rel="stylesheet" type="text/css" href="lightbox.css">
-    <?php foreach($files as $i => $file): ?>
-      <div class="lightbox" id="<?=($i+1)?>">
-        <div class="lightbox-close">
-          <a href="#"></a>
+<?php if($lightbox && count($files)): ?>
+  <!-- Prevent FOUC -->
+  <style type="text/css"><!--
+    .lightbox {
+      visibility: hidden;
+    }
+    .lightbox .lightbox-image-container {
+      display: none;
+    }
+    .lightbox .lightbox-progress a {
+      padding:<?=min((1.0 / count($files)) * 40.0, 1.0)?>%;
+    }
+<?php   foreach($files as $i => $file): ?>
+    div[id='<?=($i+1)?>'] .lightbox-image {
+      background-image: url(<?=$root?><?=$fulls?><?=rawurlencode($subpath)?><?=rawurlencode($file)?>);
+    }
+<?php   endforeach; ?>
+  //--></style>
+  <link rel="stylesheet" type="text/css" href="lightbox.css">
+<?php   foreach($files as $i => $file): ?>
+  <div class="lightbox" id="<?=($i+1)?>">
+    <div class="lightbox-close">
+      <a href="#"></a>
+    </div>
+<?php     if($i > 0 || $loop): ?>
+    <div class="lightbox-prev">
+      <a href="#<?=((($i - 1) + count($files)) % count($files) + 1)?>">
+        <div>&lsaquo;</div>
+      </a>
+    </div>
+<?php     endif; ?>
+<?php     if($i < count($files) - 1 || $loop): ?>
+    <div class="lightbox-next">
+      <a href="#<?=((($i + 1) % count($files)) + 1)?>">
+        <div>&rsaquo;</div>
+      </a>
+    </div>
+<?php     endif; ?>
+    <div class="lightbox-wrapper">
+      <div class="lightbox-image-container">
+        <div class="lightbox-image"></div>
         </div>
-        <?php if($i > 0 || $loop): ?>
-        <div class="lightbox-prev">
-          <a href="#<?=((($i - 1) + count($files)) % count($files) + 1)?>">
-            <div>&lsaquo;</div>
-          </a>
-        </div>
-        <?php endif; ?>
-        <?php if($i < count($files) - 1 || $loop): ?>
-        <div class="lightbox-next">
-          <a href="#<?=((($i + 1) % count($files)) + 1)?>">
-            <div>&rsaquo;</div>
-          </a>
-        </div>
-        <?php endif; ?>
-        <div class="lightbox-wrapper">
-          <div class="lightbox-image-container">
-            <div class="lightbox-image"></div>
-            </div>
-        </div>
-        <
-        <div class="lightbox-progress">
-          <?php for($j = 0; $j < count($files); $j++): ?>
-          <a href="#<?=($j + 1)?>" <?=($i == $j ? 'class="current"' : '')?>></a>
-          <?php endfor; ?>
-        </div>
-      </div>
-    <?php endforeach; ?>
-  <?php endif; ?>
+    </div>
+
+    <div class="lightbox-progress">
+<?php     for($j = 0; $j < count($files); $j++): ?>
+      <a href="#<?=($j + 1)?>" <?=($i == $j ? 'class="current"' : '')?>></a>
+<?php     endfor; ?>
+    </div>
+  </div>
+<?php   endforeach; ?>
+<?php endif; ?>
 </body>
 </html>
