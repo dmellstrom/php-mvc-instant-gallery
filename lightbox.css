@@ -43,10 +43,10 @@
 }
 .lightbox .lightbox-wrapper {
   position: absolute;
-  top: 4%;
+  top: 3%;
   left: 20%;
   right: 20%;
-  bottom: 8%;
+  bottom: 9%;
   z-index: 1;
   opacity: 1.0;
   transform: scale(0.8);
@@ -61,7 +61,7 @@
   text-align: center;
   opacity: 0.5;
   position: relative;
-  top: 92%;
+  top: 94%;
   height: 0;
 }
 .lightbox .lightbox-progress a {
