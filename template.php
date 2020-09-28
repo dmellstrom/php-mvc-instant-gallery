@@ -3,7 +3,6 @@
   <title><?=$title?></title>
   <style type="text/css"><!--
     body {
-      background-color: silver;
       font-family: sans-serif;
     }
     a, a:visited {
@@ -12,20 +11,18 @@
     .item {
       width: <?=$size?>px;
       height: <?=$size?>px;
-      margin: 10px;
-      padding: 20px;
+      margin: 20px;
       display: inline-block;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       float: left;
-      background-color: black;
       font-size: 1.5em;
     }
     .folder {
-      width: <?=(0.9 * $size)?>px;
-      height: <?=(0.9 * $size)?>px;
+      width: <?=$size?>px;
+      height: <?=$size?>px;
       border-radius: 0 10px 10px 10px;
       line-height: 2em;
       background-color: silver;
