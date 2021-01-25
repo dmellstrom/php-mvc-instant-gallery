@@ -52,7 +52,7 @@
   <div class="container">
     <div class="gallery">
 <?php if($subpath): ?>
-      <h2>Contents of <?=$root?><?=htmlspecialchars($subpath)?></h2>
+      <h2><?=$title?>/<?=htmlspecialchars($subpath)?></h2>
       <div class="item">
 <?php   if($parent): ?>
         <a href="<?=$root?>index.php?p=<?=rawurlencode($parent)?>">
@@ -68,7 +68,7 @@
         </a>
       </div>
 <?php else: ?>
-      <h2>Contents of <?=$root?></h2>
+      <h2><?=$title?></h2>
 <?php endif; ?>
 
 <?php if(count($subdirs)): ?>
