@@ -28,7 +28,7 @@ class Thumbnail
   protected function generateThumbnail($file, $thumbfile) {
     $size = getimagesize($file);
     if (!isset($size)) {
-      die("Unrecognized file format for $file");
+      throw new \Exception("Unrecognized file format for $file");
     }
     $width = $size[0];
     $height = $size[1];
@@ -58,7 +58,7 @@ class Thumbnail
       case 2: $original = imagecreatefromjpeg($file); break;
       case 3: $original = imagecreatefrompng($file); break;
       case 18: $original = imagecreatefromwebp($file); break;
-      default: die("Unrecognized file format for $file");
+      default: throw new \Exception("Unrecognized file format for $file");
     }
     $thumbnail = imagecreatetruecolor($thumbwidth, $thumbheight);
     imagecopyresampled($thumbnail, $original, 0, 0, 0, 0, $thumbwidth, $thumbheight, $width, $height);
@@ -72,11 +72,11 @@ class Thumbnail
     $savedir = substr($thumbfile, 0, strlen($thumbfile) - strlen($basename));
     if (!is_dir($savedir)) {
       if (!mkdir($savedir, 0755, true)) {
-        die('Failed to create thumbnail subdirectory');
+        throw new \Exception("Failed to create thumbnail subdirectory");
       }
     }
     if (!imagejpeg($thumbnail, $thumbfile, THUMBNAIL_QUALITY)) {
-      die('Failed to save thumbnail');
+      throw new \Exception("Failed to save thumbnail");
     }
     imagedestroy($original);
     imagedestroy($thumbnail);

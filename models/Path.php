@@ -11,7 +11,7 @@ class Path
     if (strpos($path, '..') !== false
         || $realpath == false
         || strpos($realpath, REAL_BASE) !== 0) {
-      die('Illegal path');
+      throw new \Exception("Illegal path");
     }
     $parent = '';
     if (strpos($path, '/') !== false) {

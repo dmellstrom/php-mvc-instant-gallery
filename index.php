@@ -1,5 +1,4 @@
 <?php
-
 // User-defined constants
 define("GALLERY_ROOT",      '/');
 define("GALLERY_TITLE",     'Gallery');
@@ -21,26 +20,28 @@ spl_autoload_register(function ($class_name) {
     include './models/' . $class_name . '.php';
 });
 
+try {
+    
 /******************************** SERVE THUMBNAIL ****************************/
 if (isset($_GET['t'])) {
-  $requested = trim($_GET['t']);
-  $thumb = new Thumbnail($requested);
-  if ($thumb->exists()) {
-    if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && $_SERVER['HTTP_IF_MODIFIED_SINCE'] == $thumb->getModified()) {
-      header('HTTP/1.0 304 Not Modified');
-      exit();
+    $requested = trim($_GET['t']);
+    $thumb = new Thumbnail($requested);
+    if ($thumb->exists()) {
+        if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && $_SERVER['HTTP_IF_MODIFIED_SINCE'] == $thumb->getModified()) {
+            header('HTTP/1.0 304 Not Modified');
+            exit();
+        }
+        session_cache_limiter('');
+        header('Content-Type: image/jpeg');
+        header("Content-Length: " . filesize($thumb->getFilename()));
+        header("Last-Modified: " . $thumb->getModified());
+        readfile($thumb->getFilename());
+        exit();
+    } else {
+        header('HTTP/1.0 404 Not Found');
+        print('404 Not Found');
+        exit();
     }
-    session_cache_limiter('');
-    header('Content-Type: image/jpeg');
-    header("Content-Length: " . filesize($thumb->getFilename()));
-    header("Last-Modified: " . $thumb->getModified());
-    readfile($thumb->getFilename());
-    exit();
-  } else {
-    header('HTTP/1.0 404 Not Found');
-    print('404 Not Found');
-    exit();
-  }
 }
 
 /******************************** SERVE INDEX ********************************/
@@ -49,16 +50,16 @@ $path = FULLS_PATH;
 $subpath = '';
 $parent = '';
 if (isset($_GET['p'])) {
-  $subpath = trim($_GET['p']);
-  $realpath = new Path($subpath);
-  $parent = $realpath->getParent();
-  $path = FULLS_PATH . $subpath;
-  $subpath .= '/';
+    $subpath = trim($_GET['p']);
+    $realpath = new Path($subpath);
+    $parent = $realpath->getParent();
+    $path = FULLS_PATH . $subpath;
+    $subpath .= '/';
 } else {
-  $realpath = new Path($subpath);
+    $realpath = new Path($subpath);
 }
 if (!$realpath->isDir()) {
-  die('Illegal path');
+    throw new \Exception('Illegal path');
 }
 $gallery = new Gallery($path);
 $subdirs = $gallery->getSubdirs();
@@ -81,3 +82,10 @@ include(TEMPLATE_FILE);
 ob_start('ob_gzhandler');
 print(ob_get_clean());
 exit();
+
+} catch (\Exception $e) {
+
+echo $e->getMessage();
+
+}
+?>
